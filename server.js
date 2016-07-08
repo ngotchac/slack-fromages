@@ -28,7 +28,8 @@ app.post('/get-fromage', (req, res) => {
     var fromage = fromages[idx];
     var token = req.body.token;
 
-    res.json({
+    res.status(200).json({
+        response_type: 'in_channel',
         attachments: [{
             title: fromage.title,
             title_link: fromage.link,
