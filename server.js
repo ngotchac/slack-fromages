@@ -36,7 +36,8 @@ app.post('/get-fromage', (req, res) => {
             text: fromage.description,
             fields: fromage.details.map(d => ({
                 title: d.key,
-                value: d.value
+                value: d.value,
+                short: true
             })),
             image_url: 'https:' + fromage.image
         }]
