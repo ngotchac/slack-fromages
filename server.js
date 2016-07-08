@@ -28,7 +28,7 @@ app.post('/get-fromage', (req, res) => {
     var fromage = fromages[idx];
     var token = req.body.token;
 
-    res.send({
+    res.json({
         attachments: [{
             title: fromage.title,
             title_link: fromage.link,
