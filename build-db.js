@@ -124,7 +124,7 @@ function fetchData(link) {
 }
 
 function getInfoboxImage($, infobox) {
-    var url = $(infobox).find('img').first().attr('src');
+    var url = $(infobox).find('.images img').first().attr('src');
 
     return /Blue_pencil/gi.test(url) ? '' : url;
 }

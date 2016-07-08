@@ -22,10 +22,7 @@ app.get('/fromage', (req, res) => {
 });
 
 app.post('/get-fromage', (req, res) => {
-    var fromages = getFromages();
-    var idx = Math.floor(Math.random() * fromages.length);
-
-    var fromage = fromages[idx];
+    var fromage = getFromage();
     var token = req.body.token;
 
     res.status(200).json({
@@ -43,6 +40,21 @@ app.post('/get-fromage', (req, res) => {
         }]
     });
 });
+
+function getFromage() {
+    var fromages = getFromages()
+            .filter(f => {
+                return f.details
+                    // Keep fromages with Lait or Pâte specified
+                    .find(d => ['Lait', 'P\u00e2te'].indexOf(d.key) >= 0);
+            })
+            .filter(f => f.image);
+
+    var idx = Math.floor(Math.random() * fromages.length);
+
+    return fromages[idx];
+
+}
 
 function getFromages() {
     var allDb = db.getAll();
